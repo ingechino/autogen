@@ -11,10 +11,6 @@ dependencies = ["autogen-core",
 
 ]
 
-[tool.uv]
-dev-dependencies = []
-
-
 [tool.ruff]
 extend = "../../pyproject.toml"
 include = ["src/**"]
@@ -27,5 +23,5 @@ include = ["src"]
 include = "../../shared_tasks.toml"
 
 [tool.poe.tasks]
-
+mypy = "mypy --config-file $POE_ROOT/../../pyproject.toml src"
 test = "true"

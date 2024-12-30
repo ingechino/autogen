@@ -76,7 +76,7 @@ jobs:
     - name: list available kernels
       run: |
         python -m jupyter kernelspec list
-    - uses: astral-sh/setup-uv@v3
+    - uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
     - run: uv sync --locked --all-extras
@@ -103,10 +103,10 @@ jobs:
         dotnet build --no-restore --configuration Release -bl /p:SignAssembly=true
     - name: Unit Test
       run: dotnet test --no-build -bl --configuration Release --filter type=!integration
-  
+
   integration-test:
     strategy:
-      fail-fast: true 
+      fail-fast: true
       matrix:
         os: [ ubuntu-latest, windows-latest ]
     needs: build
@@ -118,7 +118,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
           lfs: true
-    - uses: astral-sh/setup-uv@v3
+    - uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
     - uses: actions/setup-python@v5
@@ -197,7 +197,7 @@ jobs:
     - name: list available kernels
       run: |
         python -m jupyter kernelspec list
-    - uses: astral-sh/setup-uv@v3
+    - uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
     - uses: actions/setup-python@v5
@@ -293,4 +293,4 @@ jobs:
       env:
         MYGET_TOKEN: ${{ secrets.MYGET_TOKEN }}
       continue-on-error: true
-      
+
